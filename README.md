@@ -1,7 +1,7 @@
 Goodreads Provider for OAuth1 Client
 =========================
 
-[![License](https://img.shields.io/packagist/l/netgalley/oauth1-goodreads.svg)](https://github.com/netgalley/oauth1-goodreads/blob/master/LICENSE)
+[![License](https://img.shields.io/packagist/l/netgalley/oauth1-goodreads.svg)](https://github.com/fbng/oauth1-goodreads/blob/master/LICENSE)
 [![Latest Stable Version](https://img.shields.io/packagist/v/netgalley/oauth1-goodreads.svg)](https://packagist.org/packages/netgalley/oauth1-goodreads)
 
 This package provides Goodreads OAuth 1.0 support for the PHP League's [OAuth 1.0 Client](https://github.com/thephpleague/oauth1-client).
