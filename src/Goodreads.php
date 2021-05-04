@@ -37,9 +37,9 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function getAuthorizationUrl($temporaryIdentifier)
+    public function getAuthorizationUrl($temporaryIdentifier, array $options = [])
     {
-        $url = parent::getAuthorizationUrl($temporaryIdentifier);
+        $url = parent::getAuthorizationUrl($temporaryIdentifier, $options);
 
         if (!$this->clientCredentials->getCallbackUri()) {
             return $url;
