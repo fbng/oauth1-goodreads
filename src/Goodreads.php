@@ -3,6 +3,7 @@
 namespace NetGalley\OAuth1\Client\Server;
 
 use League\OAuth1\Client\Credentials\CredentialsException;
+use League\OAuth1\Client\Credentials\TemporaryCredentials;
 use League\OAuth1\Client\Credentials\TokenCredentials;
 use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Server\User;
@@ -25,7 +26,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    protected function createTemporaryCredentials($body)
+    protected function createTemporaryCredentials($body): TemporaryCredentials
     {
         // satisfying parent requirement for an oauth_callback_confirmed
         // argument, which Goodreads doesn't return
@@ -37,7 +38,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function getAuthorizationUrl($temporaryIdentifier)
+    public function getAuthorizationUrl($temporaryIdentifier, array $options = []): string
     {
         $url = parent::getAuthorizationUrl($temporaryIdentifier);
 
@@ -55,7 +56,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlAuthorization()
+    public function urlAuthorization(): string
     {
         return self::API_URL . 'oauth/authorize';
     }
@@ -63,7 +64,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlTemporaryCredentials()
+    public function urlTemporaryCredentials(): string
     {
         return self::API_URL . 'oauth/request_token';
     }
@@ -71,7 +72,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlTokenCredentials()
+    public function urlTokenCredentials(): string
     {
         return self::API_URL . 'oauth/access_token';
     }
@@ -79,7 +80,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlUserDetails()
+    public function urlUserDetails(): string
     {
         return self::API_URL . 'api/auth_user';
     }
@@ -87,7 +88,7 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function userDetails($data, TokenCredentials $tokenCredentials)
+    public function userDetails($data, TokenCredentials $tokenCredentials): User
     {
         $user = new User();
 
@@ -101,23 +102,23 @@ class Goodreads extends Server
     /**
      * {@inheritDoc}
      */
-    public function userEmail($data, TokenCredentials $tokenCredentials)
+    public function userEmail($data, TokenCredentials $tokenCredentials): ?string
     {
-        return;
+        return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function userScreenName($data, TokenCredentials $tokenCredentials)
+    public function userScreenName($data, TokenCredentials $tokenCredentials): ?string
     {
-        return;
+        return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function userUid($data, TokenCredentials $tokenCredentials)
+    public function userUid($data, TokenCredentials $tokenCredentials): string|int
     {
         return (int) $data->user->attributes()['id'];
     }
